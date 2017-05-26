@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_bar_back"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingLeft="12dp"
+        android:textSize="@dimen/sp_16"
+        tools:drawableLeft="@drawable/back"/>
+
+    <TextView
+        android:id="@+id/tv_bar_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="6"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:padding="@dimen/dp_10"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/sp_16"
+        tools:text="标题"/>
+
+    <TextView
+        android:id="@+id/tv_bar_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingRight="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/sp_16"
+        tools:text="管理"/>
+</merge>

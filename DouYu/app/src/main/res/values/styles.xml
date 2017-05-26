@@ -1,11 +1,24 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+
+    <declare-styleable name="ToolBarView">
+        <attr name="textLeft" format="string"/>
+        <attr name="textTitle" format="string"/>
+        <attr name="textRight" format="string"/>
+        <attr name="textSizeLeft" format="dimension"/>
+        <attr name="textSizeTitle" format="dimension"/>
+        <attr name="textSizeRight" format="dimension"/>
+        <attr name="textColorLeft" format="color"/>
+        <attr name="textColorTitle" format="color"/>
+        <attr name="textColorRight" format="color"/>
+    </declare-styleable>
 
 </resources>

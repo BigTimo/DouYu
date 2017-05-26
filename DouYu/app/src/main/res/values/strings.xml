@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DouYu</string>
+
+
+    <string name="tip_net_error">网络错误,请重试</string>
+    <string name="tip_net_time_out">链接超时,请重试</string>
+    <string name="tip_test">¥%s</string>
+    <string name="more">更多</string>
 </resources>
