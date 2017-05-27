@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_5">5dp</dimen>
-    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_default">12dp</dimen>
 
 
     <!-- 备注:在设计图1920*1080的尺寸下3px 对应1dp -->
@@ -470,6 +470,39 @@
     <dimen name="d465">155.00dp</dimen>
     <dimen name="d466">155.33dp</dimen>
     <dimen name="d467">155.67dp</dimen>
+    <dimen name="d468">156.00dp</dimen>
+    <dimen name="d469">156.33dp</dimen>
+    <dimen name="d470">156.67dp</dimen>
+    <dimen name="d471">157.00dp</dimen>
+    <dimen name="d472">157.33dp</dimen>
+    <dimen name="d473">157.67dp</dimen>
+    <dimen name="d474">158.00dp</dimen>
+    <dimen name="d475">158.33dp</dimen>
+    <dimen name="d476">158.67dp</dimen>
+    <dimen name="d477">159.00dp</dimen>
+    <dimen name="d478">159.33dp</dimen>
+    <dimen name="d479">159.67dp</dimen>
+    <dimen name="d480">160.00dp</dimen>
+    <dimen name="d481">160.33dp</dimen>
+    <dimen name="d482">160.67dp</dimen>
+    <dimen name="d483">161.00dp</dimen>
+    <dimen name="d484">161.33dp</dimen>
+    <dimen name="d485">161.67dp</dimen>
+    <dimen name="d486">162.00dp</dimen>
+    <dimen name="d487">162.33dp</dimen>
+    <dimen name="d488">162.67dp</dimen>
+    <dimen name="d489">163.00dp</dimen>
+    <dimen name="d490">163.33dp</dimen>
+    <dimen name="d491">163.67dp</dimen>
+    <dimen name="d492">164.00dp</dimen>
+    <dimen name="d493">164.33dp</dimen>
+    <dimen name="d494">164.67dp</dimen>
+    <dimen name="d495">165.00dp</dimen>
+    <dimen name="d496">165.33dp</dimen>
+    <dimen name="d497">165.67dp</dimen>
+    <dimen name="d498">166.00dp</dimen>
+    <dimen name="d499">166.33dp</dimen>
+    <dimen name="d500">166.67dp</dimen>
 
 
 </resources>

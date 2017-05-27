@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="BasePopup-v1.7.1">
+    <CLASSES>
+      <root url="jar://D:/Android/sdk/.android/build-cache/8bd5d9ebb1116c23022cf701eee148a34216d36e/output/jars/classes.jar!/" />
+      <root url="file://D:/Android/sdk/.android/build-cache/8bd5d9ebb1116c23022cf701eee148a34216d36e/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

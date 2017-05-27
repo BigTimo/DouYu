@@ -1,8 +1,12 @@
 package com.app.douyu.bean.home;
 
+import android.content.Intent;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.app.douyu.R;
+import com.app.douyu.base.App;
+import com.app.douyu.ui.PcLiveVideoActivity;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -27,6 +31,12 @@ public class HomeCateItemAdapter extends BaseQuickAdapter<RoomListEntity, BaseVi
         helper.setText(R.id.tv_room_name, item.room_name);
         ImageView imageView = helper.getView(R.id.iv_room);
         Glide.with(mContext).load(item.room_src).into(imageView);
+        helper.getConvertView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(App.getContext().getCurrentActivity(), PcLiveVideoActivity.class));
+            }
+        });
     }
 
     public static String getOnline(int online) {

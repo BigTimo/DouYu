@@ -4,12 +4,10 @@ package com.app.douyu.net;
 import com.app.douyu.base.IBaseView;
 import com.app.douyu.bean.BaseResult;
 import com.app.douyu.view.MultipleStatusView;
-import com.google.gson.Gson;
 
 import java.util.concurrent.TimeoutException;
 
 import rx.Subscriber;
-import timber.log.Timber;
 
 /**
  * @author Free
@@ -68,7 +66,7 @@ public abstract class BaseCallBack<T> extends Subscriber<T> {
 
     @Override
     public void onNext(T t) {
-        Timber.d("onNext========>%s", new Gson().toJson(t));
+//        Timber.d("onNext========>%s", new Gson().toJson(t));
         onCompleted();
         stopRefresh();
         response(t);

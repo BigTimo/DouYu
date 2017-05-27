@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_title"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d130"
+    android:paddingLeft="@dimen/margin_default"
+    android:paddingRight="@dimen/margin_default"
+    tools:showIn="@layout/item_home_cate">
+
+    <ImageView
+        android:id="@+id/iv_left"
+        android:layout_width="@dimen/d50"
+        android:layout_height="@dimen/d50"
+        android:layout_centerVertical="true"
+        tools:src="@drawable/reco_game_txt_icon"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/iv_left"
+        android:textColor="@color/c333333"
+        android:textSize="@dimen/d40"
+        tools:text="最热"
+        />
+
+
+    <com.app.douyu.view.TextImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/d60"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:drawablePadding="@dimen/d10"
+        android:drawableRight="@drawable/icon_right_arrow_gray"
+        android:text="@string/more"
+        android:textColor="@color/c999999"
+        app:drawableRightWidth="@dimen/d40"
+        />
+
+
+</RelativeLayout>

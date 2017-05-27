@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.widget.EditText;
 
 import com.app.douyu.R;
 import com.app.douyu.base.BaseFragment;
@@ -21,7 +20,6 @@ import butterknife.Bind;
  * @since 2017/5/25
  */
 public class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.HomeCateListView {
-    @Bind(R.id.et_search) EditText mEtSearch;
     @Bind(R.id.tabs) TabLayout mTabs;
     @Bind(R.id.viewpager) ViewPager mViewpager;
 

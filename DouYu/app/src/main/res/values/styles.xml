@@ -8,6 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="FullScreenTheme" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@android:color/transparent</item>
+        //设置全屏的属性
+        <item name="android:windowFullscreen">true</item>
+        <!--<item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowContentOverlay">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/background</item>
+        //设置沉浸式状态栏的colorPrimaryDark属性，SDK19之后起作用
+        <!--<item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="UserTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/d134</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:drawablePadding">@dimen/d36</item>
+        <item name="android:drawableRight">@drawable/usercenter_grey_arrow</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/margin_default</item>
+        <item name="android:paddingRight">@dimen/margin_default</item>
+        <item name="android:textColor">@color/c666666</item>
+        <item name="android:textSize">@dimen/d40</item>
+
+    </style>
+
 
     <declare-styleable name="ToolBarView">
         <attr name="textLeft" format="string"/>

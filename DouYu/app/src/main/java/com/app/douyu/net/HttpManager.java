@@ -4,7 +4,6 @@ import com.app.douyu.bean.BaseResult;
 import com.app.douyu.bean.home.HomeRecommendHotCate;
 import com.app.douyu.bean.home.HomeTitle;
 import com.app.douyu.net.api.DouYuService;
-import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -13,7 +12,6 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-import timber.log.Timber;
 
 /**
  * @author Free
@@ -39,7 +37,7 @@ public class HttpManager {
                         if (result.error != 0) {
                             subscriber.onError(new ApiException(result));
                         }
-                        Timber.d("接收到数据===================> %s",new Gson().toJson(result.data));
+//                        Timber.d("接收到数据===================> %s",new Gson().toJson(result.data));
                         return result.data;
                     }
                 })

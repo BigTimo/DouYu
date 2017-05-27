@@ -1,36 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/white"
-              android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="@dimen/d135"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/margin_12"
-        android:paddingRight="@dimen/margin_12">
+        android:paddingLeft="@dimen/margin_default"
+        >
 
         <ImageView
-            android:layout_width="66dp"
-            android:layout_height="33dp"
+            android:layout_width="@dimen/d200"
+            android:layout_height="@dimen/d75"
             android:src="@drawable/logo_icon"/>
 
-        <EditText
-            android:id="@+id/et_search"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/d85"
+            android:layout_marginLeft="@dimen/d60"
             android:layout_weight="1"
-            android:background="@color/dialog_white"/>
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            >
+
+            <com.app.douyu.view.TextImageView
+                android:id="@+id/tv_search"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/d50"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/image_search_pressed"
+                android:drawablePadding="@dimen/margin_default"
+                app:drawableLeftWidth="@dimen/d40"
+                tools:text="搜索"
+                />
+
+            <ImageView
+                android:id="@+id/iv_scanner"
+                android:layout_width="@dimen/d95"
+                android:layout_height="@dimen/d85"
+                android:padding="@dimen/d20"
+                android:src="@drawable/image_scanner_pressed"
+                />
+
+
+        </LinearLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"/>
+            android:id="@+id/iv_game"
+            android:layout_width="@dimen/d120"
+            android:layout_height="@dimen/d130"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/d25"
+            android:src="@drawable/img_history"
+            />
 
+        <ImageView
+            android:id="@+id/iv_history"
+            android:layout_width="@dimen/d120"
+            android:layout_height="@dimen/d130"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/d10"
+            android:padding="@dimen/d25"
+            android:src="@drawable/img_history"
+            />
 
     </LinearLayout>
 

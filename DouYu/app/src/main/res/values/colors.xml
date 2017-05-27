@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ff7800</color>
-    <color name="colorPrimaryDark">#ff7800</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#ff7700</color>
+    <color name="colorPrimaryDark">#ff7700</color>
+    <color name="colorAccent">#ff7700</color>
 
     <!--主界面-->
     <color name="tab_text_normal">#212121</color>
@@ -13,6 +13,9 @@
     <color name="white">#ffffff</color>
     <color name="btn_ok_pressed">#ff4248</color>
     <color name="btn_ok_unpressed">#99ff4248</color>
+    <color name="c666666">#666666</color>
+    <color name="c333333">#333333</color>
+    <color name="c999999">#999999</color>
 
     <color name="actionsheet_gray">#8F8F8F</color>
     <color name="actionsheet_text">#555555</color>

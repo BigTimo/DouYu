@@ -12,19 +12,20 @@ import com.app.douyu.base.App;
 import com.app.douyu.base.BaseActivity;
 import com.app.douyu.base.BasePresenter;
 import com.app.douyu.ui.home.HomeFragment;
+import com.app.douyu.ui.home.UserFragment;
 import com.app.douyu.view.FragmentTabHost;
 
 import butterknife.Bind;
 
 public class MainActivity extends BaseActivity {
-    long lastClickTime  = 0L;
+    long lastClickTime = 0L;
 
     @Bind(R.id.tabhost) FragmentTabHost mTabhost;
 
     private int[] images = {R.drawable.selector_home, R.drawable.selector_live, R.drawable.selector_follow, R.drawable.selector_find, R.drawable.selector_user};
     private String[] titles = {"首页", "直播", "关注", "发现", "我的"};
     //    private final Class[] fragments = {HomeFragment.class, LiveFragment.class, FollowFragment.class, FindFragment.class, UserFragment.class};
-    private final Class[] fragments = {HomeFragment.class, HomeFragment.class, HomeFragment.class, HomeFragment.class, HomeFragment.class};
+    private final Class[] fragments = {HomeFragment.class, UserFragment.class, UserFragment.class, UserFragment.class, UserFragment.class};
 
     @Override
     public BasePresenter getPresenter() {
@@ -65,12 +66,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(System.currentTimeMillis() - lastClickTime > 2000) {
+        if (System.currentTimeMillis() - lastClickTime > 2000) {
             lastClickTime = System.currentTimeMillis();
-            Toast.makeText(this,"再按一次退出",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_LONG).show();
+        } else {
+            App.getContext().finishAll();
         }
-
-
-        App.getContext().finishAll();
     }
 }

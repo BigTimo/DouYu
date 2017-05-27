@@ -122,7 +122,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     public void onDestroy() {
-        mMultipleStatusView.setViewStatus(MultipleStatusView.ViewStatus.EMPTY);
+        if (mMultipleStatusView != null) {
+            mMultipleStatusView.setViewStatus(MultipleStatusView.ViewStatus.EMPTY);
+        }
         ButterKnife.unbind(this);
         if (mPresenter != null) {
             mPresenter.unSubscribe();
