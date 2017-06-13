@@ -55,14 +55,6 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_game"
-            android:layout_width="@dimen/d120"
-            android:layout_height="@dimen/d130"
-            android:layout_alignParentRight="true"
-            android:padding="@dimen/d25"
-            android:src="@drawable/img_history"
-            />
 
         <ImageView
             android:id="@+id/iv_history"

@@ -38,6 +38,9 @@ public abstract class BaseCallBack<T> extends Subscriber<T> {
     public void onStart() {
         //加载框显示
         super.onStart();
+        if (mView != null) {
+            mView.showMultipleView(MultipleStatusView.ViewStatus.LOADING);
+        }
     }
 
     @Override
@@ -66,7 +69,7 @@ public abstract class BaseCallBack<T> extends Subscriber<T> {
 
     @Override
     public void onNext(T t) {
-//        Timber.d("onNext========>%s", new Gson().toJson(t));
+        //        Timber.d("onNext========>%s", new Gson().toJson(t));
         onCompleted();
         stopRefresh();
         response(t);

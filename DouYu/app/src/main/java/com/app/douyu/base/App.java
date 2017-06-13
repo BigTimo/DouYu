@@ -5,6 +5,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 import com.app.douyu.BuildConfig;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.HashMap;
 import java.util.Stack;
@@ -40,8 +41,17 @@ public class App extends Application {
         registerActivityLifecycleCallbacks(new LifeCallback());
         initTimber();
         //        DaoManager.getInstance();
+        initBugly();
     }
 
+    private void initBugly() {
+        CrashReport.initCrashReport(getApplicationContext(), "e51d8ad25a", BuildConfig.DEBUG);
+    }
+    //    @Override
+    //    protected void attachBaseContext(Context context) {
+    //        super.attachBaseContext(context);
+    //        Multidex.install(this);
+    //    }
 
     /**
      * 初始化本地日志模式和内存分析插件

@@ -1,6 +1,10 @@
 package com.app.douyu.ui.home;
 
 
+import android.text.TextUtils;
+
+import com.app.douyu.bean.Config;
+import com.app.douyu.bean.home.HomeBanner;
 import com.app.douyu.bean.home.HomeRecommendHotCate;
 import com.app.douyu.bean.home.HomeTitle;
 import com.app.douyu.net.BaseCallBack;
@@ -27,12 +31,34 @@ public class HomePresenter extends HomeContract.Presenter {
     }
 
     @Override
-    public void getHomeCate(String identification) {
-        addSubscription(HttpManager.getHomeCate(identification, new BaseCallBack<List<HomeRecommendHotCate>>() {
+    public void getHomeBanner() {
+        addSubscription(HttpManager.getHomeBanner(new BaseCallBack<List<HomeBanner>>() {
             @Override
-            protected void response(List<HomeRecommendHotCate> result) {
-                ((HomeContract.HomeCateView) mView).showHomeCateDetail(result);
+            protected void response(List<HomeBanner> result) {
+                ((HomeContract.HomeCateView) mView).showHomeBanner(result);
             }
         }));
     }
+
+
+    @Override
+    public void getHomeCate(String identification) {
+        if (TextUtils.equals(identification, Config.HOME_RECOMMEND)) {
+            addSubscription(HttpManager.getHomeRecommend(new BaseCallBack<List<HomeRecommendHotCate>>() {
+                @Override
+                protected void response(List<HomeRecommendHotCate> result) {
+                    ((HomeContract.HomeCateView) mView).showHomeCateDetail(result);
+                }
+            }));
+        } else {
+            addSubscription(HttpManager.getHomeCate(identification, new BaseCallBack<List<HomeRecommendHotCate>>() {
+                @Override
+                protected void response(List<HomeRecommendHotCate> result) {
+                    ((HomeContract.HomeCateView) mView).showHomeCateDetail(result);
+                }
+            }));
+
+        }
+    }
+
 }

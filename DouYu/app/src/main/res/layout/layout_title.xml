@@ -13,9 +13,9 @@
     <ImageView
         android:id="@+id/iv_left"
         android:layout_width="@dimen/d50"
-        android:layout_height="@dimen/d50"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        tools:src="@drawable/reco_game_txt_icon"/>
+        android:src="@drawable/icon_column"/>
 
     <TextView
         android:id="@+id/tv_title"

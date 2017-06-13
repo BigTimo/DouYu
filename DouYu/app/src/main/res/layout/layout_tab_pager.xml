@@ -14,6 +14,8 @@
         app:tabMode="scrollable"
         />
 
+    <include layout="@layout/layout_divider1"/>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

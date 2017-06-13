@@ -1,11 +1,6 @@
 package com.app.douyu;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.douyu.base.App;
@@ -13,19 +8,20 @@ import com.app.douyu.base.BaseActivity;
 import com.app.douyu.base.BasePresenter;
 import com.app.douyu.ui.home.HomeFragment;
 import com.app.douyu.ui.home.UserFragment;
-import com.app.douyu.view.FragmentTabHost;
+import com.app.douyu.ui.live.LiveFragment;
+import com.app.douyu.view.NavigateTabBar;
 
 import butterknife.Bind;
 
 public class MainActivity extends BaseActivity {
     long lastClickTime = 0L;
+    @Bind(R.id.tabhost) NavigateTabBar mNavigateTabBar;
 
-    @Bind(R.id.tabhost) FragmentTabHost mTabhost;
-
-    private int[] images = {R.drawable.selector_home, R.drawable.selector_live, R.drawable.selector_follow, R.drawable.selector_find, R.drawable.selector_user};
-    private String[] titles = {"首页", "直播", "关注", "发现", "我的"};
-    //    private final Class[] fragments = {HomeFragment.class, LiveFragment.class, FollowFragment.class, FindFragment.class, UserFragment.class};
-    private final Class[] fragments = {HomeFragment.class, UserFragment.class, UserFragment.class, UserFragment.class, UserFragment.class};
+    private static final String TAG_PAGE_HOME = "首页";
+    private static final String TAG_PAGE_LIVE = "直播";
+    private static final String TAG_PAGE_FOLLOW = "关注";
+    private static final String TAG_PAGE_VIDEO = "发现";
+    private static final String TAG_PAGE_USER = "我的";
 
     @Override
     public BasePresenter getPresenter() {
@@ -44,23 +40,42 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        mTabhost.setup(this, getSupportFragmentManager(), R.id.main_content);//设置替换哪个布局
-        for (int i = 0; i < fragments.length; i++) {
-            //为每一个Tab按钮设置图标、文字和内容
-            TabHost.TabSpec tabSpec = mTabhost.newTabSpec(titles[i]).setIndicator(getTabItemView(i));
-            //将Tab按钮添加进Tab选项卡中
-            mTabhost.addTab(tabSpec, fragments[i], null);
-            mTabhost.getTabWidget().setDividerDrawable(null);//设置每个TabView的控件
-        }
-    }
+        mNavigateTabBar.onRestoreInstanceState(savedInstanceState);
+        mNavigateTabBar.addTab(HomeFragment.class, new NavigateTabBar.TabParam(R.drawable.home_pressed, R.drawable.home_selected, TAG_PAGE_HOME));
+        mNavigateTabBar.addTab(LiveFragment.class, new NavigateTabBar.TabParam(R.drawable.live_pressed, R.drawable.live_selected, TAG_PAGE_LIVE));
+        mNavigateTabBar.addTab(HomeFragment.class, new NavigateTabBar.TabParam(R.drawable.follow_pressed, R.drawable.follow_selected, TAG_PAGE_FOLLOW));
+        mNavigateTabBar.addTab(UserFragment.class, new NavigateTabBar.TabParam(R.drawable.video, R.drawable.video_selected, TAG_PAGE_VIDEO));
+        mNavigateTabBar.addTab(UserFragment.class, new NavigateTabBar.TabParam(R.drawable.user_pressed, R.drawable.user_selected, TAG_PAGE_USER));
+        mNavigateTabBar.setTabSelectListener(new NavigateTabBar.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(NavigateTabBar.ViewHolder holder) {
+                //                Toast.makeText(MainActivity.this, "信息为:"+holder.tag, Toast.LENGTH_SHORT).show();
+                switch (holder.tag.toString()) {
+                    //                    首页
+                    case TAG_PAGE_HOME:
+                        mNavigateTabBar.showFragment(holder);
+                        break;
+                    //                    直播
+                    case TAG_PAGE_LIVE:
 
-    private View getTabItemView(int index) {
-        View view = LayoutInflater.from(this).inflate(R.layout.item_tabhost, null);
-        ImageView imageView = (ImageView) view.findViewById(R.id.iv_tabhost_item);
-        imageView.setImageResource(images[index]);
-        TextView textView = (TextView) view.findViewById(R.id.tv_tabhost_item);
-        textView.setText(titles[index]);
-        return view;
+                        mNavigateTabBar.showFragment(holder);
+                        break;
+                    //                    关注
+                    case TAG_PAGE_FOLLOW:
+                    mNavigateTabBar.showFragment(holder);
+                    break;
+                    //                    发现
+                    case TAG_PAGE_VIDEO:
+                        mNavigateTabBar.showFragment(holder);
+                        break;
+                    //                    我的
+                    case TAG_PAGE_USER:
+                        if (mNavigateTabBar != null)
+                            mNavigateTabBar.showFragment(holder);
+                        break;
+                }
+            }
+        });
     }
 
 
@@ -71,6 +86,8 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(this, "再按一次退出", Toast.LENGTH_LONG).show();
         } else {
             App.getContext().finishAll();
+            System.exit(0);
         }
     }
+
 }

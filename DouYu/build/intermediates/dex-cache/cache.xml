@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\Android\sdk\.android\build-cache\5500f1608ac87f2b12a667f694939b61bef99af6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="21257e8fb439affef2a89c23ddfda45869ac0c31">
+        <dex dex="D:\Test\DouYu\DouYu\app\build\intermediates\pre-dexed\debug\classes_ccae44c404342e12dd58d9ab378f0739c5c755f8.jar" />
+    </item>
+
+</items>

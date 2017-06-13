@@ -8,8 +8,10 @@ import android.support.v4.view.ViewPager;
 import com.app.douyu.R;
 import com.app.douyu.base.BaseFragment;
 import com.app.douyu.base.BaseFragmentPagerAdapter;
+import com.app.douyu.bean.Config;
 import com.app.douyu.bean.home.HomeTitle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -50,18 +52,22 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         if (result == null) {
             return;
         }
-        String[] titles = new String[result.size()];
-        Fragment[] fragments = new Fragment[result.size()];
+
+        List<String> titles = new ArrayList<>();
+        List<Fragment> fragments = new ArrayList<>();
+        titles.add("推荐");
+        fragments.add(HomeCateFragment.getHomeCateFragment(Config.HOME_RECOMMEND));
         for (int i = 0; i < result.size(); i++) {
-            titles[i] = result.get(i).title;
-            fragments[i] = HomeCateFragment.getHomeCateFragment(result.get(i).identification);
+            titles.add(result.get(i).title);
+            fragments.add(HomeCateFragment.getHomeCateFragment(result.get(i).identification));
         }
-        BaseFragmentPagerAdapter baseFragmentPagerAdapter = new BaseFragmentPagerAdapter(getFragmentManager(), fragments, titles);
+        BaseFragmentPagerAdapter baseFragmentPagerAdapter = new BaseFragmentPagerAdapter(getChildFragmentManager(), fragments, titles);
         mViewpager.setAdapter(baseFragmentPagerAdapter);
-        //设置Fragment的缓存个数 以当前页为中心，左右各3个
+        //设置Fragment的缓存个数 以当前页为中心，左右各4个
+        mViewpager.setOffscreenPageLimit(4);
+        mTabs.setTabMode(TabLayout.MODE_FIXED);
         mTabs.setupWithViewPager(mViewpager);
     }
-
 
 
 }

@@ -15,7 +15,7 @@ public class ApiConfig {
     /**
      * ************************* 首页接口*******************************
      */
-    //     首页列表
+    //     首页标题列表
     public static final String getHomeCateList = "/api/homeCate/getCateList";
     //     列表详情
     public static final String getHomeCate = "/api/homeCate/getHotRoom";
@@ -23,7 +23,7 @@ public class ApiConfig {
     //****************************推荐模块***************************************
 
     //    首页轮播
-    public static final String getCarousel = "/api/v1/slide/6";
+    public static final String getHomeBanner = "/api/v1/slide/6";
     //    首页---推荐---热栏目
     public static final String getHomeHotColumn = "/api/v1/getbigDataRoom";
     //    首页---颜值栏目
@@ -39,23 +39,19 @@ public class ApiConfig {
 
     //****************************其他***************************************
 
-
-    /**
-     *   ********************************************************************
-     */
     /**
      * ************************* 直播接口*******************************
      */
     //    直播其他栏目分类
-    public static final String getLiveOtherColumn = "/api/v1/getColumnList";
+    public static final String getLiveTitles = "/api/v1/getColumnList";
     //    全部直播
-    public static final String getLiveAllList = "/api/v1/live";
+    public static final String getLiveAll = "/api/v1/live";
     //    其他二级栏目分类
-    public static final String getLiveOtherTwoColumn = "/api/v1/getColumnDetail";
+    public static final String getLiveTitlesTwo = "/api/v1/getColumnDetail";
     //   二级栏目分类列表
-    public static final String getLiveOtherTwoList = "/api/v1/live/";
+    public static final String getLiveDetail = "/api/v1/live/{tag_id}";
     //    体育直播
-    public static final String getLiveSportsAllList = "/api/v1/qie";
+    public static final String getLivSports = "/api/v1/qie";
 
     /**
      * *****************************视频接口***************************************

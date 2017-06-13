@@ -38,8 +38,15 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Timber.v("onCreateView");
-        if (mRootView == null) {
-            mRootView = inflater.inflate(R.layout.layout_base_fragment, null);
+        if (mRootView != null) {
+            ViewGroup parent = (ViewGroup) mRootView.getParent();
+            if (parent != null) {
+                parent.removeView(mRootView);
+            }
+            return mRootView;
+        }
+        if (getLayoutId() != 0) {
+            mRootView = inflater.inflate(R.layout.layout_base_fragment, container, false);
         }
         mMRefreshLayout = (SwipeRefreshLayout) mRootView.findViewById(R.id.refreshLayout);
         mMultipleStatusView = (MultipleStatusView) mRootView.findViewById(R.id.multipleStatusView);
@@ -49,10 +56,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         mPresenter = getPresenter();
         if (mPresenter != null) {
             mPresenter.setView(this);
-        }
-        ViewGroup parent = (ViewGroup) mRootView.getParent();
-        if (parent != null) {
-            parent.removeView(mRootView);
         }
         ButterKnife.bind(this, mRootView);
         return mRootView;

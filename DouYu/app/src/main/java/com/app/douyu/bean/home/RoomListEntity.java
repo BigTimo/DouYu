@@ -1,11 +1,13 @@
 package com.app.douyu.bean.home;
 
+import java.util.List;
+
 /**
  * @author Free
  * @version 1.0
  * @since 2017/5/25
  */
-public class RoomListEntity {
+public class RoomListEntity  {
 
 
     /**
@@ -34,7 +36,7 @@ public class RoomListEntity {
     public String room_src;
     public String vertical_src;
     public int isVertical;
-    public int cate_id;
+    public String cate_id;
     public String room_name;
     public String show_status;
     public String subject;
@@ -49,6 +51,49 @@ public class RoomListEntity {
     public String jumpUrl;
     public IconDataBean icon_data;
     public String anchor_city;
+    /**
+     * cate_id : 26
+     * vod_quality : 0
+     * specific_catalog : wog
+     * specific_status : 1
+     * credit_illegal : 0
+     * is_white_list : 0
+     * cur_credit : 12
+     * low_credit : 4
+     * url : /wog
+     * game_url : /directory/game/classic
+     * game_icon_url : https://staticlive.douyucdn.cn/upload/game_cate/568029e11adb524c778da572b578f2e3.jpg
+     * show_details : 参与方式入群看公告——鬼叔群号：567790209      口令：鬼叔威武 |||||
+     * 主播直播时间：10：00-22：00
+     * 下载及所有问题可入群求助
+     * owner_avatar : https://apic.douyucdn.cn/upload/avatar/006/62/01/92_avatar_big.jpg?rltime
+     * cdnsWithName : [{"name":"主线路","cdn":"ws"},{"name":"备用线路5","cdn":"tct"},{"name":"备用线路2","cdn":"ws2"},{"name":"备用线路3","cdn":"dl"}]
+     * is_pass_player : 0
+     * owner_weight : 14.02t
+     * fans : 24650
+     * is_high_game : 1
+     * column_id : 1
+     */
+    //    banner特有
+    public String vod_quality;
+    public String specific_catalog;
+    public String specific_status;
+    public String credit_illegal;
+    public String is_white_list;
+    public String cur_credit;
+    public String low_credit;
+    public String url;
+    public String game_url;
+    public String game_icon_url;
+    public String show_details;
+    public String owner_avatar;
+    public int is_pass_player;
+    public String owner_weight;
+    public String fans;
+    public int is_high_game;
+    public String column_id;
+    public List<CdnsWithNameBean> cdnsWithName;
+
 
 
     public static class IconDataBean {
@@ -65,4 +110,14 @@ public class RoomListEntity {
         public int icon_height;
     }
 
+    public static class CdnsWithNameBean {
+        /**
+         * name : 主线路
+         * cdn : ws
+         */
+
+        public String name;
+        public String cdn;
+
+    }
 }

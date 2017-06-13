@@ -92,7 +92,7 @@
             app:drawableLeftWidth="@dimen/d60"
             app:drawableRightWidth="@dimen/d26"/>
 
-        <include layout="@layout/layout_divider1"/>
+        <include layout="@layout/layout_divider1lr"/>
 
         <com.app.douyu.view.TextImageView
             style="@style/UserTextStyle"
@@ -101,7 +101,7 @@
             app:drawableLeftWidth="@dimen/d60"
             app:drawableRightWidth="@dimen/d26"/>
 
-        <include layout="@layout/layout_divider1"/>
+        <include layout="@layout/layout_divider1lr"/>
 
         <com.app.douyu.view.TextImageView
             style="@style/UserTextStyle"
@@ -121,7 +121,7 @@
             app:drawableLeftWidth="@dimen/d60"
             app:drawableRightWidth="@dimen/d26"/>
 
-        <include layout="@layout/layout_divider1"/>
+        <include layout="@layout/layout_divider1lr"/>
 
         <com.app.douyu.view.TextImageView
             style="@style/UserTextStyle"
@@ -140,7 +140,7 @@
             app:drawableLeftWidth="@dimen/d60"
             app:drawableRightWidth="@dimen/d26"/>
 
-        <include layout="@layout/layout_divider1"/>
+        <include layout="@layout/layout_divider1lr"/>
 
 
         <com.app.douyu.view.TextImageView

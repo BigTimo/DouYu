@@ -10,15 +10,19 @@
 
 
     <FrameLayout
-        android:id="@+id/main_content"
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <com.app.douyu.view.FragmentTabHost
+    <include layout="@layout/layout_divider1"/>
+
+    <com.app.douyu.view.NavigateTabBar
         android:id="@+id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        android:background="@color/white"
+        app:containerId="@+id/main_container"/>
 
 
 </LinearLayout>

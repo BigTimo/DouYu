@@ -92,7 +92,7 @@ public class MultipleStatusView extends RelativeLayout {
 
     public void setContentViewResId(int contentViewResId) {
         mContentView = addMultipleView(mContentView, CONTENT, contentViewResId);
-        mContentView.setVisibility(GONE);
+//        mContentView.setVisibility(GONE);
     }
 
     /**
@@ -172,4 +172,23 @@ public class MultipleStatusView extends RelativeLayout {
         void onRetryClick(ViewStatus viewStatus, View view);
     }
 
+    public View getEmptyView() {
+        return mEmptyView;
+    }
+
+    public View getErrorView() {
+        return mErrorView;
+    }
+
+    public View getLoadingView() {
+        return mLoadingView;
+    }
+
+    public View getNoNetworkView() {
+        return mNoNetworkView;
+    }
+
+    public View getContentView() {
+        return mContentView;
+    }
 }

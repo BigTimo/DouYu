@@ -1,10 +1,9 @@
-package com.app.douyu.ui.home;
+package com.app.douyu.ui.home.adapter;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.app.douyu.R;
-import com.app.douyu.bean.home.HomeCateItemAdapter;
 import com.app.douyu.bean.home.HomeRecommendHotCate;
 import com.app.douyu.bean.home.RoomListEntity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -38,7 +37,6 @@ public class HomeCateAdapter extends BaseQuickAdapter<HomeRecommendHotCate, Base
             room_list.clear();
             room_list.addAll(item.room_list);
         }
-
         HomeCateItemAdapter homeCateItemAdapter = new HomeCateItemAdapter(R.layout.item_home_cate_item, room_list);
         RecyclerView rv = helper.getView(R.id.recycle_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);

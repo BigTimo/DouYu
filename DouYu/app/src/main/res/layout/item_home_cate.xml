@@ -5,6 +5,9 @@
               android:layout_height="wrap_content"
               android:orientation="vertical">
 
+    <include layout="@layout/layout_divider30"/>
+
+    <include layout="@layout/layout_divider1"/>
 
     <include layout="@layout/layout_title"/>
 
@@ -12,6 +15,8 @@
         android:id="@+id/recycle_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
         tools:listitem="@layout/item_home_cate_item"/>
 
 

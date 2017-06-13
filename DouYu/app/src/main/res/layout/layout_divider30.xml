@@ -3,5 +3,5 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/d30"
-    android:background="#dfdfdf"
+    android:background="#eeeeee"
     />

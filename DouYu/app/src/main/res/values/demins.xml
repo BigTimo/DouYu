@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_15">5dp</dimen>
     <dimen name="margin_default">12dp</dimen>
 
 
@@ -503,6 +503,7 @@
     <dimen name="d498">166.00dp</dimen>
     <dimen name="d499">166.33dp</dimen>
     <dimen name="d500">166.67dp</dimen>
-
+    <dimen name="d520">173.33dp</dimen>
+    <dimen name="d630">210.00dp</dimen>
 
 </resources>
