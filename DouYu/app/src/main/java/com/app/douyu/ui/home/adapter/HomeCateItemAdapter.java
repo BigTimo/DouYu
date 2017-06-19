@@ -1,15 +1,15 @@
 package com.app.douyu.ui.home.adapter;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.douyu.R;
-import com.app.douyu.base.App;
 import com.app.douyu.bean.home.RoomListEntity;
-import com.app.douyu.ui.PcLiveVideoActivity;
+import com.app.douyu.ui.play.PcLiveVideoActivity;
 import com.app.douyu.util.ScreenUtil;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -34,13 +34,12 @@ public class HomeCateItemAdapter extends BaseQuickAdapter<RoomListEntity, BaseVi
     }
 
 
-
     public void setLayoutResId(int layoutResId) {
         mLayoutResId = layoutResId;
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, RoomListEntity item) {
+    protected void convert(BaseViewHolder helper, final RoomListEntity item) {
         GridLayoutManager.LayoutParams layoutParams = (GridLayoutManager.LayoutParams) helper.getConvertView().getLayoutParams();
 
         if (helper.getPosition() % 2 == 0) {
@@ -59,7 +58,12 @@ public class HomeCateItemAdapter extends BaseQuickAdapter<RoomListEntity, BaseVi
         helper.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(App.getContext().getCurrentActivity(), PcLiveVideoActivity.class));
+                Intent intent = new Intent();
+                intent.setClass(mContext, PcLiveVideoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("room_id", item.room_id);
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
             }
         });
     }

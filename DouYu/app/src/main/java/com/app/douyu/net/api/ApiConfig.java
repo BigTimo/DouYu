@@ -10,6 +10,8 @@ public class ApiConfig {
 
     //    Base地址
     public static String BASE_url = "http://capi.douyucdn.cn";
+    //     OldBase地址
+    public static String oldBaseUrl = "http://coapi.douyucdn.cn";
 
 
     /**
@@ -17,18 +19,18 @@ public class ApiConfig {
      */
     //     首页标题列表
     public static final String getHomeCateList = "/api/homeCate/getCateList";
-    //     列表详情
+    //     首页---(手游娱乐趣玩)
     public static final String getHomeCate = "/api/homeCate/getHotRoom";
 
     //****************************推荐模块***************************************
 
-    //    首页轮播
+    //    首页---推荐---轮播
     public static final String getHomeBanner = "/api/v1/slide/6";
     //    首页---推荐---热栏目
     public static final String getHomeHotColumn = "/api/v1/getbigDataRoom";
-    //    首页---颜值栏目
+    //    首页---推荐---颜值栏目
     public static final String getHomeFaceScoreColumn = "/api/v1/getVerticalRoom";
-    //    其他热门 种类
+    //    首页---推荐---种类
     public static final String getHomeRecommendHotCate = "/api/v1/getHotCate";
     //    栏目更多 --- 二级分类列表
     public static final String getHomeColumnMoreCate = "/api/v1/getThreeCate";
@@ -77,7 +79,7 @@ public class ApiConfig {
      * ************************* 直播视频 *******************************
      */
     //    新接口
-    public static final String getLiveVideo = "/api/v1/room/";
+    public static final String getLiveVideo = "/api/v1/room/{room_id}";
 
     //    老接口
     public static final String getOldLiveVideo = "/lapi/live/thirdPart/getPlay/";

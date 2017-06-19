@@ -62,8 +62,8 @@ public class MainActivity extends BaseActivity {
                         break;
                     //                    关注
                     case TAG_PAGE_FOLLOW:
-                    mNavigateTabBar.showFragment(holder);
-                    break;
+                        mNavigateTabBar.showFragment(holder);
+                        break;
                     //                    发现
                     case TAG_PAGE_VIDEO:
                         mNavigateTabBar.showFragment(holder);
@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
     public void onBackPressed() {
         if (System.currentTimeMillis() - lastClickTime > 2000) {
             lastClickTime = System.currentTimeMillis();
-            Toast.makeText(this, "再按一次退出", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "再次点击退出程序哟~", Toast.LENGTH_LONG).show();
         } else {
             App.getContext().finishAll();
             System.exit(0);

@@ -23,6 +23,8 @@ import rx.Observable;
  */
 public interface DouYuService {
 
+    //------------------------------------首页------------------------------------
+
     /**
      * 首页分类列表
      */
@@ -62,6 +64,7 @@ public interface DouYuService {
     @GET(ApiConfig.getHomeRecommendHotCate)
     Observable<BaseResult<List<HomeRecommendHotCate>>> getHomeRecommendHotCate();
 
+    //------------------------------------直播------------------------------------
 
     /**
      * 直播标题
@@ -98,6 +101,9 @@ public interface DouYuService {
      */
     @GET(ApiConfig.getLivSports)
     Observable<BaseResult<List<RoomListEntity>>> getLiveSportsAllList();
+
+
+    //------------------------------------播放------------------------------------
 
 
 }

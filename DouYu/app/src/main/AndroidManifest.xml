@@ -32,7 +32,10 @@
 
         <!--PC直播-->
         <activity
-            android:name=".ui.PcLiveVideoActivity"
+            android:name=".ui.play.PcLiveVideoActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
             />
 
     </application>

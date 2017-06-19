@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.andview.refreshview.XRefreshView;
 import com.app.douyu.R;
+import com.app.douyu.base.App;
 import com.app.douyu.base.BaseFragment;
 import com.app.douyu.bean.Config;
 import com.app.douyu.bean.home.HomeBanner;
@@ -34,11 +35,11 @@ import butterknife.Bind;
 public class HomeCateFragment extends BaseFragment<HomePresenter> implements HomeContract.HomeCateView {
 
     @Bind(R.id.refreshview) XRefreshView mRefreshview;
-    @Bind(R.id.banner) Banner mBanner;
     @Bind(R.id.recycle_view) RecyclerView mRecycleView;
     private List<HomeRecommendHotCate> data = new ArrayList<>();
     private HomeCateAdapter mHomeCateAdapter;
     private String mIdentification;
+    private Banner mBanner;
 
 
     public static HomeCateFragment getHomeCateFragment(String identification) {
@@ -65,7 +66,7 @@ public class HomeCateFragment extends BaseFragment<HomePresenter> implements Hom
 
         if (TextUtils.equals(mIdentification, Config.HOME_RECOMMEND)) {
             mPresenter.getHomeBanner();
-            mBanner.setVisibility(View.VISIBLE);
+            mBanner = (Banner) App.getContext().getCurrentActivity().getLayoutInflater().inflate(R.layout.layout_banner, (ViewGroup) mRecycleView.getParent(), false);
             mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
             mBanner.setImageLoader(new ImageLoader() {
                 @Override
@@ -73,11 +74,11 @@ public class HomeCateFragment extends BaseFragment<HomePresenter> implements Hom
                     Glide.with(getContext()).load(path).into(imageView);
                 }
             });
-        } else {
-            mBanner.setVisibility(View.GONE);
+
+            mHomeCateAdapter.addHeaderView(mBanner);
         }
 
-
+        mRefreshview.setPullLoadEnable(false);
         mRefreshview.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
             @Override
             public void onRefresh() {
@@ -144,7 +145,6 @@ public class HomeCateFragment extends BaseFragment<HomePresenter> implements Hom
     @Override
     public void showHomeCateDetail(List<HomeRecommendHotCate> result) {
         mRefreshview.stopRefresh(true);
-        showContentView();
         data.clear();
         data.addAll(result);
         mHomeCateAdapter.notifyDataSetChanged();
