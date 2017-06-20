@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -55,17 +56,23 @@ public class HttpConfig {
 
 
     private HttpConfig() {
-        /**
-         * 拦截器，请给所有求添加消息头
-         */
+        // 拦截器，请给所有求添加参数和请求头
         Interceptor headInterceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request()
-                        .newBuilder()
-                        .addHeader("client_sys", "android")
-                        .addHeader("aid", "android")
-                        .addHeader("time", System.currentTimeMillis() + "")
+                Request original = chain.request();
+
+                //添加通用的query
+                HttpUrl url = original.url().newBuilder()
+                        .addQueryParameter("client_sys", "client_sys")
+                        .addQueryParameter("aid", "android1")
+                        .addQueryParameter("time", System.currentTimeMillis() + "")
+                        .build();
+
+                //添加通用的请求头
+                Request request = original.newBuilder()
+                        .url(url)
+                        .addHeader("HEAD", "head")
                         .build();
 
                 return chain.proceed(request);
@@ -83,7 +90,7 @@ public class HttpConfig {
                 .readTimeout(TIMEOUT_READ, TimeUnit.SECONDS)
                 .writeTimeout(TIMEOUT_WRITE, TimeUnit.SECONDS)
                 .addInterceptor(headInterceptor)
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
                 .addNetworkInterceptor(new HttpCacheInterceptor())
                 .cache(cache)
                 .build();

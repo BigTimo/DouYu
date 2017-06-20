@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.douyu.R;
-import com.app.douyu.view.MultipleStatusView;
+import com.app.mylibrary.view.MultipleStatusView;
 
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -21,7 +21,7 @@ import timber.log.Timber;
  */
 public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements IBaseView {
     private View mRootView;
-    private MultipleStatusView mMultipleStatusView;
+    protected MultipleStatusView mMultipleStatusView;
     private SwipeRefreshLayout mMRefreshLayout;
 
     private boolean useLazyLoad = true;
@@ -34,6 +34,11 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     //定义Presenter
     protected P mPresenter;
 
+    @Override
+    public boolean setUseLayoutIdCustom() {
+        return false;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,14 +50,18 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
             }
             return mRootView;
         }
-        if (getLayoutId() != 0) {
+
+        if (setUseLayoutIdCustom()) {
+            mRootView = inflater.inflate(getLayoutId(), container, false);
+        } else {
             mRootView = inflater.inflate(R.layout.layout_base_fragment, container, false);
+            mMRefreshLayout = (SwipeRefreshLayout) mRootView.findViewById(R.id.refreshLayout);
+            mMultipleStatusView = (MultipleStatusView) mRootView.findViewById(R.id.multipleStatusView);
+            mMRefreshLayout.setEnabled(useRefreshLayout(mMRefreshLayout));
+            mMultipleStatusView.setContentView(getLayoutId());
+            mMultipleStatusView.setOnRetryClickListener(this);
         }
-        mMRefreshLayout = (SwipeRefreshLayout) mRootView.findViewById(R.id.refreshLayout);
-        mMultipleStatusView = (MultipleStatusView) mRootView.findViewById(R.id.multipleStatusView);
-        mMRefreshLayout.setEnabled(useRefreshLayout(mMRefreshLayout));
-        mMultipleStatusView.setContentViewResId(getLayoutId());
-        mMultipleStatusView.setOnRetryClickListener(this);
+
         mPresenter = getPresenter();
         if (mPresenter != null) {
             mPresenter.setView(this);
@@ -60,6 +69,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         ButterKnife.bind(this, mRootView);
         return mRootView;
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -96,7 +106,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     public MultipleStatusView getMultipleView() {
         return mMultipleStatusView;
     }
-
 
     /**
      * 在ViewPager中切换时，是否使用懒加载<br/>
@@ -136,28 +145,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         mMRefreshLayout.setRefreshing(true);
     }
 
-    @Override
-    public void stopRefresh() {
-        mMRefreshLayout.setRefreshing(false);
-    }
-
-
-    @Override
-    public void showContentView() {
-        stopRefresh();
-        mMultipleStatusView.showContentView();
-    }
-
-    @Override
-    public void showMultipleView(MultipleStatusView.ViewStatus status) {
-        showMultipleView(status, MultipleStatusView.DEFAULT_RES);
-    }
-
-    @Override
-    public void showMultipleView(MultipleStatusView.ViewStatus status, int layoutRes) {
-        stopRefresh();
-        mMultipleStatusView.showMultipleView(status, layoutRes);
-    }
 
     @Override
     public void onRetryClick(MultipleStatusView.ViewStatus viewStatus, View view) {
@@ -205,7 +192,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public void onDestroyView() {
         Timber.v("onDestroyView");
-        mMultipleStatusView.setViewStatus(MultipleStatusView.ViewStatus.EMPTY);
         hadLoad = false;
         ButterKnife.unbind(this);
         if (mPresenter != null) {

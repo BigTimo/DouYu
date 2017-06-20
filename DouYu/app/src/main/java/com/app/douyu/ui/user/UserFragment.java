@@ -1,4 +1,4 @@
-package com.app.douyu.ui.home;
+package com.app.douyu.ui.user;
 
 import android.os.Bundle;
 
@@ -22,7 +22,6 @@ public class UserFragment extends BaseFragment {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        showContentView();
     }
 
     @Override

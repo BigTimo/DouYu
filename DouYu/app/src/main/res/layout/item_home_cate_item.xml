@@ -32,7 +32,7 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/gray_h">
 
-                <com.app.douyu.view.TextImageView
+                <com.app.mylibrary.view.TextImageView
                     android:id="@+id/tv_count"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/d36"
@@ -52,7 +52,7 @@
             </RelativeLayout>
 
 
-            <com.app.douyu.view.TextImageView
+            <com.app.mylibrary.view.TextImageView
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d50"

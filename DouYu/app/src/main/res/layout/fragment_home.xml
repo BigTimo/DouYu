@@ -32,7 +32,7 @@
             android:gravity="center_vertical"
             >
 
-            <com.app.douyu.view.TextImageView
+            <com.app.mylibrary.view.TextImageView
                 android:id="@+id/tv_search"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/d50"
@@ -68,8 +68,11 @@
 
     </LinearLayout>
 
-
-    <include layout="@layout/layout_tab_pager"/>
+    <com.app.mylibrary.view.MultipleStatusView
+        android:id="@+id/multipleStatusView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:contentView="@layout/layout_tab_pager"/>
 
 
 </LinearLayout>

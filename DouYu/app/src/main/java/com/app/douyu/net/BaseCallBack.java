@@ -1,9 +1,14 @@
 package com.app.douyu.net;
 
 
+import android.graphics.drawable.AnimationDrawable;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.app.douyu.R;
 import com.app.douyu.base.IBaseView;
 import com.app.douyu.bean.BaseResult;
-import com.app.douyu.view.MultipleStatusView;
+import com.app.mylibrary.view.MultipleStatusView;
 
 import java.util.concurrent.TimeoutException;
 
@@ -17,40 +22,56 @@ import rx.Subscriber;
 public abstract class BaseCallBack<T> extends Subscriber<T> {
     private boolean showLoading = true;
     private boolean showTip = true;
-    private IBaseView mView;
+    private MultipleStatusView mMultipleView;
+    private AnimationDrawable mDrawable;
 
+    public BaseCallBack(IBaseView view) {
+        this(view, true);
+    }
 
-    public BaseCallBack() {
-
+    public BaseCallBack(IBaseView view, boolean showTip) {
+        this.showTip = showTip;
+        if (view != null) {
+            mMultipleView = view.getMultipleView();
+        }
     }
 
     public BaseCallBack(boolean showLoading, boolean showTip) {
-        this(showLoading, showTip, null);
-    }
-
-    public BaseCallBack(boolean showLoading, boolean showTip, IBaseView view) {
-        mView = view;
         this.showLoading = showLoading;
         this.showTip = showTip;
     }
 
+
     @Override
     public void onStart() {
-        //加载框显示
         super.onStart();
-        if (mView != null) {
-            mView.showMultipleView(MultipleStatusView.ViewStatus.LOADING);
+        if (mMultipleView != null) {
+            if (mMultipleView.getViewStatus() != MultipleStatusView.ViewStatus.CONTENT) {
+                mMultipleView.showMultipleStatus(MultipleStatusView.ViewStatus.LOADING);
+                View loadingView = mMultipleView.getLoadingView();
+                ImageView imageView = (ImageView) loadingView.findViewById(R.id.iv);
+                mDrawable = (AnimationDrawable) imageView.getDrawable();
+                mDrawable.start();
+            }
         }
     }
 
     @Override
     public void onCompleted() {
-        //加载框消失
+        if (mMultipleView != null) {
+            mMultipleView.showContentView();
+        }
+        if (mDrawable != null) {
+            mDrawable.stop();
+        }
 
     }
 
     @Override
     public void onError(Throwable e) {
+        if (mDrawable != null) {
+            mDrawable.stop();
+        }
         //加载框消失
         if (e instanceof ApiException) {
             //服务器返回的错误的数据，与预期不符
@@ -69,13 +90,8 @@ public abstract class BaseCallBack<T> extends Subscriber<T> {
 
     @Override
     public void onNext(T t) {
-        //        Timber.d("onNext========>%s", new Gson().toJson(t));
         onCompleted();
-        stopRefresh();
         response(t);
-        if (mView != null) {
-            mView.showContentView();
-        }
     }
 
     /**
@@ -90,7 +106,6 @@ public abstract class BaseCallBack<T> extends Subscriber<T> {
      * 如需自己处理，重写此方法，返回true，自己处理一切
      */
     protected boolean error(BaseResult result) {
-        stopRefresh();
         return false;
     }
 
@@ -101,11 +116,9 @@ public abstract class BaseCallBack<T> extends Subscriber<T> {
      * @param e
      */
     protected void fail(Throwable e) {
-        stopRefresh();
-        if (mView != null) {
-            if (mView.getMultipleView().getViewStatus() != MultipleStatusView.ViewStatus.CONTENT) {
-                mView.showMultipleView(MultipleStatusView.ViewStatus.NO_NETWORK);
-            }
+
+        if (mMultipleView != null && mMultipleView.getViewStatus() != MultipleStatusView.ViewStatus.CONTENT) {
+            mMultipleView.showMultipleStatus(MultipleStatusView.ViewStatus.NO_NETWORK);
         }
 
         if (showTip) {
@@ -119,10 +132,5 @@ public abstract class BaseCallBack<T> extends Subscriber<T> {
         }
     }
 
-    private void stopRefresh() {
-        if (mView != null) {
-            mView.stopRefresh();
-        }
-    }
 
 }

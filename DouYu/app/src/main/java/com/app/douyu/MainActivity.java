@@ -7,8 +7,8 @@ import com.app.douyu.base.App;
 import com.app.douyu.base.BaseActivity;
 import com.app.douyu.base.BasePresenter;
 import com.app.douyu.ui.home.HomeFragment;
-import com.app.douyu.ui.home.UserFragment;
 import com.app.douyu.ui.live.LiveFragment;
+import com.app.douyu.ui.user.UserFragment;
 import com.app.douyu.view.NavigateTabBar;
 
 import butterknife.Bind;
@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected boolean setUseLayoutIdCustom() {
+    public boolean setUseLayoutIdCustom() {
         return true;
     }
 

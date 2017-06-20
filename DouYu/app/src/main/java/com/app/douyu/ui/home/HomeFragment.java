@@ -4,17 +4,24 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.app.douyu.R;
 import com.app.douyu.base.BaseFragment;
 import com.app.douyu.base.BaseFragmentPagerAdapter;
 import com.app.douyu.bean.Config;
 import com.app.douyu.bean.home.HomeTitle;
+import com.app.mylibrary.view.MultipleStatusView;
+import com.app.mylibrary.view.TextImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * @author Free
@@ -22,8 +29,19 @@ import butterknife.Bind;
  * @since 2017/5/25
  */
 public class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.HomeCateListView {
-    @Bind(R.id.tabs) TabLayout mTabs;
-    @Bind(R.id.viewpager) ViewPager mViewpager;
+
+
+    @Bind(R.id.tv_search) TextImageView mTvSearch;
+    @Bind(R.id.iv_scanner) ImageView mIvScanner;
+    @Bind(R.id.iv_history) ImageView mIvHistory;
+    @Bind(R.id.multipleStatusView) MultipleStatusView mMultipleStatusView;
+    TabLayout mTabs;
+    ViewPager mViewpager;
+
+    @Override
+    public boolean setUseLayoutIdCustom() {
+        return true;
+    }
 
     @Override
     public int getLayoutId() {
@@ -32,7 +50,15 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        mMultipleStatusView.setContentView(R.layout.layout_tab_pager);
+        View contentView = mMultipleStatusView.getContentView();
+        mTabs = (TabLayout) contentView.findViewById(R.id.tabs);
+        mViewpager = (ViewPager) contentView.findViewById(R.id.viewpager);
+    }
 
+    @Override
+    public MultipleStatusView getMultipleView() {
+        return mMultipleStatusView;
     }
 
     @Override
@@ -47,7 +73,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
     @Override
     public void showHomeCateTitle(List<HomeTitle> result) {
-        showContentView();
 
         if (result == null) {
             return;
@@ -70,4 +95,17 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     }
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 }

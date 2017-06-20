@@ -29,7 +29,7 @@
         />
 
 
-    <com.app.douyu.view.TextImageView
+    <com.app.mylibrary.view.TextImageView
         android:layout_width="wrap_content"
         android:layout_height="@dimen/d60"
         android:layout_alignParentRight="true"

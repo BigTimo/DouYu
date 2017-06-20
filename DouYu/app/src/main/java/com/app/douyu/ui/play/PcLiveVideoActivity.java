@@ -32,7 +32,7 @@ public class PcLiveVideoActivity extends BaseActivity<PlayPresenter> implements 
     }
 
     @Override
-    protected boolean setUseLayoutIdCustom() {
+    public boolean setUseLayoutIdCustom() {
         return true;
     }
 

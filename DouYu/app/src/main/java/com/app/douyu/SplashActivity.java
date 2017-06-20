@@ -20,7 +20,7 @@ import rx.schedulers.Schedulers;
  */
 public class SplashActivity extends BaseActivity {
     @Override
-    protected boolean setUseLayoutIdCustom() {
+    public boolean setUseLayoutIdCustom() {
         return true;
     }
 

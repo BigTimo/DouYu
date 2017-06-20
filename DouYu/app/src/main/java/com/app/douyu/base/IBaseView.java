@@ -2,7 +2,7 @@ package com.app.douyu.base;
 
 import android.os.Bundle;
 
-import com.app.douyu.view.MultipleStatusView;
+import com.app.mylibrary.view.MultipleStatusView;
 
 
 /**
@@ -33,15 +33,12 @@ public interface IBaseView extends MultipleStatusView.OnRetryClickListener {
      */
     void reLoadData();
 
-
-    void showContentView();
-
-    void showMultipleView(MultipleStatusView.ViewStatus status);
-
-    void showMultipleView(MultipleStatusView.ViewStatus status, int layoutRes);
-    void stopRefresh();
-
     MultipleStatusView getMultipleView();
+
+    /**
+     * 如果自定义布局，重写此方法，返回true
+     */
+    boolean setUseLayoutIdCustom();
 
 
 }

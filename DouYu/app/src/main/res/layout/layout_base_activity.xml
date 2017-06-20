@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:textTitle="测试"/>
 
-    <free.com.timo.common.MultipleStatusView
+    <com.app.mylibrary.view.MultipleStatusView
         android:id="@+id/multipleStatusView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

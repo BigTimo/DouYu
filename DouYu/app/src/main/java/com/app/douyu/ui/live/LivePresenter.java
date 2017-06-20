@@ -20,7 +20,7 @@ public class LivePresenter extends LiveContract.Presenter {
 
     @Override
     public void getLiveTitles() {
-        HttpManager.getLiveTitles(new BaseCallBack<List<LiveTitle>>() {
+        HttpManager.getLiveTitles(new BaseCallBack<List<LiveTitle>>(mView) {
             @Override
             protected void response(List<LiveTitle> result) {
                 ((LiveContract.TitleView) mView).showTitles(result);
@@ -35,7 +35,7 @@ public class LivePresenter extends LiveContract.Presenter {
         } else if (TextUtils.equals(shortName, Config.LIVE_SPORTS)) {
             getLivSports();
         } else {
-            addSubscription(HttpManager.getLiveTitlesTwo(shortName, new BaseCallBack<List<LiveTitleTwo>>() {
+            addSubscription(HttpManager.getLiveTitlesTwo(shortName, new BaseCallBack<List<LiveTitleTwo>>(mView) {
                 @Override
                 protected void response(List<LiveTitleTwo> result) {
                     ((LiveContract.DetailView) mView).showTitlesTow(result);
@@ -47,7 +47,7 @@ public class LivePresenter extends LiveContract.Presenter {
 
     @Override
     public void getLiveDetail(String tag_id) {
-        addSubscription(HttpManager.getLiveDetail(tag_id, new BaseCallBack<List<RoomListEntity>>() {
+        addSubscription(HttpManager.getLiveDetail(tag_id, new BaseCallBack<List<RoomListEntity>>(mView) {
             @Override
             protected void response(List<RoomListEntity> result) {
                 ((LiveContract.DetailView) mView).showLiveDetail(result);
@@ -58,7 +58,7 @@ public class LivePresenter extends LiveContract.Presenter {
 
     @Override
     public void getLiveAll() {
-        addSubscription(HttpManager.getLiveAll(new BaseCallBack<List<RoomListEntity>>() {
+        addSubscription(HttpManager.getLiveAll(new BaseCallBack<List<RoomListEntity>>(mView) {
             @Override
             protected void response(List<RoomListEntity> result) {
                 ((LiveContract.DetailView) mView).showLiveDetail(result);
@@ -69,7 +69,7 @@ public class LivePresenter extends LiveContract.Presenter {
 
     @Override
     public void getLivSports() {
-        addSubscription(HttpManager.getLivSports(new BaseCallBack<List<RoomListEntity>>() {
+        addSubscription(HttpManager.getLivSports(new BaseCallBack<List<RoomListEntity>>(mView) {
             @Override
             protected void response(List<RoomListEntity> result) {
                 ((LiveContract.DetailView) mView).showLiveDetail(result);

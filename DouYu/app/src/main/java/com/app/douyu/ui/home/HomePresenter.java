@@ -22,7 +22,7 @@ public class HomePresenter extends HomeContract.Presenter {
 
     @Override
     public void getHomeCateList() {
-        addSubscription(HttpManager.getHomeCateList(new BaseCallBack<List<HomeTitle>>() {
+        addSubscription(HttpManager.getHomeCateList(new BaseCallBack<List<HomeTitle>>(mView) {
             @Override
             protected void response(List<HomeTitle> result) {
                 ((HomeContract.HomeCateListView) mView).showHomeCateTitle(result);
@@ -32,7 +32,7 @@ public class HomePresenter extends HomeContract.Presenter {
 
     @Override
     public void getHomeBanner() {
-        addSubscription(HttpManager.getHomeBanner(new BaseCallBack<List<HomeBanner>>() {
+        addSubscription(HttpManager.getHomeBanner(new BaseCallBack<List<HomeBanner>>(mView) {
             @Override
             protected void response(List<HomeBanner> result) {
                 ((HomeContract.HomeCateView) mView).showHomeBanner(result);
@@ -44,14 +44,14 @@ public class HomePresenter extends HomeContract.Presenter {
     @Override
     public void getHomeCate(String identification) {
         if (TextUtils.equals(identification, Config.HOME_RECOMMEND)) {
-            addSubscription(HttpManager.getHomeRecommend(new BaseCallBack<List<HomeRecommendHotCate>>() {
+            addSubscription(HttpManager.getHomeRecommend(new BaseCallBack<List<HomeRecommendHotCate>>(mView) {
                 @Override
                 protected void response(List<HomeRecommendHotCate> result) {
                     ((HomeContract.HomeCateView) mView).showHomeCateDetail(result);
                 }
             }));
         } else {
-            addSubscription(HttpManager.getHomeCate(identification, new BaseCallBack<List<HomeRecommendHotCate>>() {
+            addSubscription(HttpManager.getHomeCate(identification, new BaseCallBack<List<HomeRecommendHotCate>>(mView) {
                 @Override
                 protected void response(List<HomeRecommendHotCate> result) {
                     ((HomeContract.HomeCateView) mView).showHomeCateDetail(result);

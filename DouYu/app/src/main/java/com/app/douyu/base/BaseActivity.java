@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.app.douyu.R;
-import com.app.douyu.view.MultipleStatusView;
 import com.app.douyu.view.ToolBarView;
+import com.app.mylibrary.view.MultipleStatusView;
 
 import butterknife.ButterKnife;
 
@@ -17,10 +17,10 @@ import butterknife.ButterKnife;
  * @version 1.0
  * @since 2017/1/5
  */
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IBaseView {
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IBaseView, MultipleStatusView.OnRetryClickListener {
 
-    ToolBarView mToolBar;
-    MultipleStatusView mMultipleStatusView;
+    protected ToolBarView mToolBar;
+    protected MultipleStatusView mMultipleStatusView;
 
 
     //定义Presenter
@@ -56,8 +56,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
             mMultipleStatusView = (MultipleStatusView) findViewById(R.id.multipleStatusView);
             mToolBar = (ToolBarView) findViewById(R.id.toolBar);
             mToolBar.setFocusableInTouchMode(true);
-            useToolBar(mToolBar);
-            mMultipleStatusView.setContentViewResId(getLayoutId());
+            mMultipleStatusView.setContentView(getLayoutId());
             mMultipleStatusView.setOnRetryClickListener(this);
         }
 
@@ -66,10 +65,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     public abstract P getPresenter();
 
 
-    /**
-     * 如果自定义布局，重写此方法，返回true
-     */
-    protected boolean setUseLayoutIdCustom() {
+
+    @Override
+    public boolean setUseLayoutIdCustom() {
         return false;
     }
 
@@ -83,30 +81,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     }
 
 
-    public void useToolBar(ToolBarView toolBar) {
-    }
-
-
     @Override
     public MultipleStatusView getMultipleView() {
         return mMultipleStatusView;
-    }
-
-
-    @Override
-    public void showContentView() {
-        mMultipleStatusView.showContentView();
-    }
-
-    @Override
-    public void showMultipleView(MultipleStatusView.ViewStatus status) {
-        showMultipleView(status, MultipleStatusView.DEFAULT_RES);
-    }
-
-
-    @Override
-    public void showMultipleView(MultipleStatusView.ViewStatus status, int layoutRes) {
-        mMultipleStatusView.showMultipleView(status, layoutRes);
     }
 
     @Override
@@ -115,15 +92,11 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         reLoadData();
     }
 
-    @Override
-    public void stopRefresh() {
-
-    }
 
     @Override
     public void onDestroy() {
         if (mMultipleStatusView != null) {
-            mMultipleStatusView.setViewStatus(MultipleStatusView.ViewStatus.EMPTY);
+            mMultipleStatusView.showMultipleStatus(MultipleStatusView.ViewStatus.EMPTY);
         }
         ButterKnife.unbind(this);
         if (mPresenter != null) {
